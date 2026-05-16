@@ -20,3 +20,6 @@ venv/
 # Logs and temporary files
 *.log
 .DS_Store
+
+# Local databases
+*.db
