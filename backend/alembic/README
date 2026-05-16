@@ -1,0 +1,2 @@
+This directory is reserved for Alembic migrations.
+Initialize and generate migrations with Alembic in deployment environments.
