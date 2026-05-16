@@ -1,5 +1,5 @@
 from collections import defaultdict, deque
-from datetime import datetime, timedelta
+from datetime import UTC, datetime, timedelta
 from fastapi import HTTPException, Request
 
 _requests: dict[str, deque[datetime]] = defaultdict(deque)
@@ -7,7 +7,7 @@ _requests: dict[str, deque[datetime]] = defaultdict(deque)
 
 def simple_rate_limit(request: Request, limit: int = 60, window_seconds: int = 60) -> None:
     key = f"{request.client.host if request.client else 'local'}:{request.url.path}"
-    now = datetime.utcnow()
+    now = datetime.now(UTC).replace(tzinfo=None)
     q = _requests[key]
     window_start = now - timedelta(seconds=window_seconds)
 

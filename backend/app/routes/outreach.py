@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import UTC, datetime
 from fastapi import APIRouter, Depends
 from app.utils.security import require_auth
 
@@ -12,7 +12,7 @@ def send_email(_: str = Depends(require_auth)):
 
 @router.get("/track")
 def track_outreach(_: str = Depends(require_auth)):
-    return {"items": [{"sponsor": "Acme Tech", "status": "contacted", "last_contacted": datetime.utcnow().isoformat()}]}
+    return {"items": [{"sponsor": "Acme Tech", "status": "contacted", "last_contacted": datetime.now(UTC).isoformat()}]}
 
 
 @router.put("/status")
